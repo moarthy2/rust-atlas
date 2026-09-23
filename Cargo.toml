@@ -1,0 +1,36 @@
+[package]
+name = "rust-docs-bot"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "Highly resource-efficient Discord bot that serves Rust documentation (Reference, By Example, Nomicon, Book) with AI-routed Skills and Context7."
+license = "MIT"
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+strip = true
+panic = "abort"
+
+[dependencies]
+tokio = { version = "1", features = ["rt", "macros", "time", "sync", "signal"] }
+twilight-gateway = { version = "0.17", default-features = false, features = ["rustls-webpki-roots", "zstd", "twilight-http"] }
+twilight-http = { version = "0.17", default-features = false, features = ["decompression", "rustls-webpki-roots"] }
+twilight-model = { version = "0.17" }
+reqwest = { version = "0.13", default-features = false, features = ["json", "query", "rustls"] }
+tl = "0.7"
+moka = { version = "0.12", features = ["future"] }
+nucleo-matcher = "0.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_urlencoded = "0.7"
+async-trait = "0.1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dotenvy = "0.15"
+anyhow = "1"
+mimalloc = { version = "0.1", default-features = false }
+
+[dev-dependencies]
+tokio = { version = "1", features = ["rt", "macros", "time"] }
