@@ -101,7 +101,7 @@ jobs:
           mkdir -p dist
           cp target/${{ matrix.target }}/release/rust-docs-bot dist/rust-atlas-${{ matrix.name }}
           cp .env.example dist/
-          tar -C dist -czf rust-atlas-${{ matrix.name }}.tar.gz rust-atlas-${{ matrix.name }} .env.example
+          tar -czf dist/rust-atlas-${{ matrix.name }}.tar.gz -C dist rust-atlas-${{ matrix.name }} .env.example
       - uses: actions/upload-artifact@v4
         with:
           name: rust-atlas-${{ matrix.name }}
